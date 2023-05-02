@@ -31,12 +31,6 @@ app.use(cookieParser());
 
 app.use("/api/daily", dailyRoute);
 
-// index page
-// app.get("/", function (req, res) {
-//   res.render("pages/index");
-// });
-// app.use("/api/auth", authRoute);
-
 app.use((err, req, res, next) => {
   const errorStatus = err.status || 500;
   const errorMessage = err.message || "Something went wrong";
