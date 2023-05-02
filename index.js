@@ -22,6 +22,7 @@ const connect = async () => {
   }
 };
 
+app.set("view engine", "ejs");
 app.use(
   cors({ origin: "https://mytimesheet-sigma.vercel.app", credentials: true })
 );
@@ -29,6 +30,11 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use("/api/daily", dailyRoute);
+
+// index page
+// app.get("/", function (req, res) {
+//   res.render("pages/index");
+// });
 // app.use("/api/auth", authRoute);
 
 app.use((err, req, res, next) => {

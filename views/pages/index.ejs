@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Export Daily</title>
+  </head>
+  <body>
+    <div style="margin: 0 7.5%">
+      <div style="text-align: center">
+        <img
+          style="width: 20%"
+          src="https://res.cloudinary.com/dlwlhvdms/image/upload/v1683035629/timesheet/legit_u3nxri.png"
+          alt="tes"
+        />
+        <h3 style="text-decoration: underline; text-transform: uppercase">
+          Timesheet
+        </h3>
+
+        <table
+          style="width: 100%; border: none; font-size: 12px; text-align: left"
+        >
+          <tbody>
+            <tr>
+              <th></th>
+              <th></th>
+            </tr>
+            <tr>
+              <td>
+                Vendor Name <span style="margin-left: 28px"></span>: Jatis
+                Mobile
+              </td>
+              <td style="text-align: right">
+                Supervisor : Hery Basuki
+                <span style="margin-right: 32px"></span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Consultant Name <span style="margin-left: 10px"></span>:
+                Prastowo Adi N
+              </td>
+              <td style="text-align: right">
+                Tribe Leader <span style="margin-left: 1px"></span>: Alfin Suryo
+                Alam
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Consultant Role <span style="margin-left: 18px"></span>:
+                Frontend Developer
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table
+          style="
+            width: 100%;
+            font-size: 11px;
+            border-collapse: collapse;
+            text-decoration: none;
+            margin-top: 15px;
+          "
+        >
+          <tr style="text-align: center; border: 1px solid black">
+            <th style="border: 1px solid black; padding: 10px; width: 70px">
+              DATE
+            </th>
+            <th style="border: 1px solid black; padding: 5px; width: 250px">
+              Task / Activity/ Project Name / Ticket no.
+            </th>
+            <th style="border: 1px solid black; padding: 10px">START TIME</th>
+            <th style="border: 1px solid black; padding: 10px">END TIME</th>
+            <th style="border: 1px solid black; padding: 10px">REMARK</th>
+          </tr>
+          <% if (daily.length > 0) { %> <% daily.forEach(daily => {%>
+          <tr style="text-align: left; border: 1px solid black">
+            <td style="border: 1px solid black; padding: 4px">
+              <%= moment(daily.createdAt).format("DD MMMM YYYY") %>
+            </td>
+            <td style="border: 1px solid black; padding: 4px">
+              <%= daily.activity %>
+            </td>
+            <td
+              style="border: 1px solid black; text-align: center; padding: 4px"
+            >
+              08:30
+            </td>
+            <td
+              style="border: 1px solid black; text-align: center; padding: 4px"
+            >
+              17:30
+            </td>
+            <td
+              style="border: 1px solid black; padding: 4px; text-align: center"
+            >
+              WFO
+            </td>
+          </tr>
+          <% });%> <% }%>
+        </table>
+        <table
+          style="
+            width: 80%;
+            font-size: 11px;
+            border-collapse: collapse;
+            text-decoration: none;
+            margin-top: 45px;
+          "
+        >
+          <tr style="text-align: center; border: 1px solid black">
+            <th
+              style="
+                border: 1px solid black;
+                padding: 5px 10px 5px 10px;
+                width: 200px;
+              "
+            >
+              Prepared By
+            </th>
+            <th
+              style="
+                border: 1px solid black;
+                padding: 5px 10px 5px 10px;
+                width: 200px;
+              "
+            >
+              Supervisor
+            </th>
+            <th
+              style="
+                border: 1px solid black;
+                padding: 5px 10px 5px 10px;
+                width: 200px;
+              "
+            >
+              Tribe Leader
+            </th>
+          </tr>
+          <tr style="border: 1px solid black">
+            <td style="border: 1px solid black; padding: 3px 0px 3px 0px">
+              Prastowo Adi N
+            </td>
+            <td style="border: 1px solid black; padding: 3px 0px 3px 0px">
+              Hery Basuki
+            </td>
+            <td style="border: 1px solid black; padding: 3px 0px 3px 0px">
+              Alfin Suryo Alam
+            </td>
+          </tr>
+          <tr style="border: 1px solid black; height: 100px">
+            <td style="border: 1px solid black; padding: 3px 0px 3px 0px"></td>
+            <td style="border: 1px solid black; padding: 3px 0px 3px 0px"></td>
+            <td style="border: 1px solid black; padding: 3px 0px 3px 0px"></td>
+          </tr>
+          <tr style="border: 1px solid black">
+            <td style="border: 1px solid black; padding: 3px 0px 3px 0px">
+              Date : <%= moment(lastDay).format("DD MMMM YYYY") %>
+            </td>
+            <td style="border: 1px solid black; padding: 3px 0px 3px 0px">
+              Date : <%= moment(lastDay).format("DD MMMM YYYY") %>
+            </td>
+            <td style="border: 1px solid black; padding: 3px 0px 3px 0px">
+              Date : <%= moment(lastDay).format("DD MMMM YYYY") %>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>
