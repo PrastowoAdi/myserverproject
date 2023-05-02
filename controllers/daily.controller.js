@@ -48,7 +48,6 @@ export const exportPdf = async (req, res, next) => {
           res.send(err);
         } else {
           let options = {
-            phantomPath: "./node_modules/phantomjs-prebuilt/bin/phantomjs",
             height: "11.25in",
             width: "8.5in",
             header: {
@@ -59,23 +58,30 @@ export const exportPdf = async (req, res, next) => {
             },
           };
 
-          pdf.create(data, options).toStream((err, pdfStream) => {
+          // pdf.create(data, options).toStream((err, pdfStream) => {
+          //   if (err) {
+          //     // handle error and return a error response code
+          //     console.log(err);
+          //     return res.sendStatus(500);
+          //   } else {
+          //     // send a status code of 200 OK
+          //     res.statusCode = 200;
+
+          //     // once we are done reading end the response
+          //     pdfStream.on("end", () => {
+          //       // done reading
+          //       return res.end();
+          //     });
+
+          //     // pipe the contents of the PDF directly to the response
+          //     pdfStream.pipe(res);
+          //   }
+          // });
+          pdf.create(data, options).toFile("report.pdf", function (err, data) {
             if (err) {
-              // handle error and return a error response code
-              console.log(err);
-              return res.sendStatus(500);
+              res.send(err);
             } else {
-              // send a status code of 200 OK
-              res.statusCode = 200;
-
-              // once we are done reading end the response
-              pdfStream.on("end", () => {
-                // done reading
-                return res.end();
-              });
-
-              // pipe the contents of the PDF directly to the response
-              pdfStream.pipe(res);
+              res.send("File created successfully");
             }
           });
         }
