@@ -48,7 +48,7 @@ export const exportPdf = async (req, res, next) => {
           res.send(err);
         } else {
           let options = {
-            phantomPath: "./node_modules/phantomjs/bin/phantomjs",
+            // phantomPath: "./node_modules/phantomjs/bin/phantomjs",
             height: "11.25in",
             width: "8.5in",
             header: {
