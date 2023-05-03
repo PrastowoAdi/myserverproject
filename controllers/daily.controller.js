@@ -7,6 +7,13 @@ import moment from "moment";
 
 export const dailyAdd = async (req, res, next) => {
   try {
+    const { activity } = req.body;
+    if (activity === "") {
+      res.status(400).json({
+        isSuccess: false,
+        message: "Activity is required!!!",
+      });
+    }
     const newDaily = new Daily({
       ...req.body,
     });
@@ -14,6 +21,29 @@ export const dailyAdd = async (req, res, next) => {
     res.status(201).json({
       isSuccess: true,
       message: "Berhasil Tambah Aktivitas",
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+export const dailyUpdate = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { activity } = req.body;
+    await Daily.findOneAndUpdate(
+      {
+        _id: id,
+      },
+      {
+        activity,
+      }
+    ).then(() => {
+      res.status(200).json({
+        isSuccess: true,
+        message: "Success Update Activity",
+        // data: { activity },
+      });
     });
   } catch (err) {
     next(err);
@@ -31,6 +61,7 @@ export const getDaily = async (req, res, next) => {
     next(err);
   }
 };
+
 export const exportPdf = async (req, res, next) => {
   try {
     var date = new Date();
@@ -58,32 +89,32 @@ export const exportPdf = async (req, res, next) => {
             },
           };
 
-          // pdf.create(data, options).toStream((err, pdfStream) => {
-          //   if (err) {
-          //     // handle error and return a error response code
-          //     console.log(err);
-          //     return res.sendStatus(500);
-          //   } else {
-          //     // send a status code of 200 OK
-          //     res.statusCode = 200;
-
-          //     // once we are done reading end the response
-          //     pdfStream.on("end", () => {
-          //       // done reading
-          //       return res.end();
-          //     });
-
-          //     // pipe the contents of the PDF directly to the response
-          //     pdfStream.pipe(res);
-          //   }
-          // });
-          pdf.create(data, options).toFile("report.pdf", function (err, data) {
+          pdf.create(data, options).toStream((err, pdfStream) => {
             if (err) {
-              res.send(err);
+              // handle error and return a error response code
+              console.log(err);
+              return res.sendStatus(500);
             } else {
-              res.send("File created successfully");
+              // send a status code of 200 OK
+              res.statusCode = 200;
+
+              // once we are done reading end the response
+              pdfStream.on("end", () => {
+                // done reading
+                return res.end();
+              });
+
+              // pipe the contents of the PDF directly to the response
+              pdfStream.pipe(res);
             }
           });
+          // pdf.create(data, options).toFile("report.pdf", function (err, data) {
+          //   if (err) {
+          //     res.send(err);
+          //   } else {
+          //     res.send("File created successfully");
+          //   }
+          // });
         }
       }
     );
