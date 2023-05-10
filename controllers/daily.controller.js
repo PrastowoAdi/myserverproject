@@ -30,13 +30,14 @@ export const dailyAdd = async (req, res, next) => {
 export const dailyUpdate = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const { activity } = req.body;
+    const { activity, work } = req.body;
     await Daily.findOneAndUpdate(
       {
         _id: id,
       },
       {
         activity,
+        work,
       }
     ).then(() => {
       res.status(200).json({

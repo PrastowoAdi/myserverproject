@@ -7,6 +7,11 @@ const DailySchema = new Schema(
       type: String,
       required: true,
     },
+    work: {
+      type: String,
+      required: true,
+      default: "WFH",
+    },
   },
   {
     timestamps: true,
