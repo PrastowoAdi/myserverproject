@@ -8,8 +8,6 @@ import cors from "cors";
 // import authRoute from "./routes/auth.route.js";
 import dailyRoute from "./routes/daily.route.js";
 import landingRoute from "./routes/myportfolio/landing.route.js";
-import guestBookRoute from "./routes/guestBook.route.js";
-import guestListRoute from "./routes/wedding/guestlist.route.js";
 
 const app = express();
 dotenv.config();
@@ -38,7 +36,6 @@ app.use(
       "http://localhost:3000",
       "https://mytimesheet-sigma.vercel.app",
       "https://myportfolio-liard-eight.vercel.app",
-      "https://weeding-theme1.vercel.app",
     ],
     credentials: true,
   })
@@ -48,8 +45,6 @@ app.use(cookieParser());
 
 app.use("/api/daily", dailyRoute);
 app.use("/api/myportfolio/landing", landingRoute);
-app.use("/api/guestbook", guestBookRoute);
-app.use("/api/guestlist", guestListRoute);
 
 app.use((err, req, res, next) => {
   const errorStatus = err.status || 500;
