@@ -12,6 +12,10 @@ const DailySchema = new Schema(
       required: true,
       default: "WFH",
     },
+    date: {
+      type: Date,
+      default: Date.now,
+    },
   },
   {
     timestamps: true,

@@ -30,7 +30,11 @@ export const dailyAdd = async (req, res, next) => {
 export const dailyUpdate = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const { activity, work } = req.body;
+    const { activity, work, date } = req.body;
+
+    const dateTime = new Date();
+    const dateUpdate = date + " " + dateTime.toLocaleTimeString();
+
     await Daily.findOneAndUpdate(
       {
         _id: id,
@@ -38,6 +42,7 @@ export const dailyUpdate = async (req, res, next) => {
       {
         activity,
         work,
+        date: dateUpdate,
       }
     ).then(() => {
       res.status(200).json({
@@ -53,7 +58,7 @@ export const dailyUpdate = async (req, res, next) => {
 
 export const getDaily = async (req, res, next) => {
   try {
-    const user = await Daily.find().sort({createdAt: 'ascending'});
+    const user = await Daily.find().sort({ createdAt: "ascending" });
 
     res.status(200).json({
       data: user,
