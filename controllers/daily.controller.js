@@ -58,7 +58,7 @@ export const dailyUpdate = async (req, res, next) => {
 
 export const getDaily = async (req, res, next) => {
   try {
-    const user = await Daily.find().sort({ createdAt: "ascending" });
+    const user = await Daily.find().sort({ date: "ascending" });
 
     res.status(200).json({
       data: user,
