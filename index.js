@@ -37,6 +37,7 @@ app.use(
       "http://localhost:3000",
       "https://mytimesheet-sigma.vercel.app",
       "https://myportfolio-liard-eight.vercel.app",
+      "https://mytodoapps.vercel.app",
     ],
     credentials: true,
   })
