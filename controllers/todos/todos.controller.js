@@ -105,9 +105,21 @@ export const getTodos = async (req, res, next) => {
 
 export const getTodosCompleted = async (req, res, next) => {
   try {
-    const todos = await Todos.find({
-      status: true,
-    }).sort({ date: "ascending" });
+    const todos = await Todos.aggregate([
+      {
+        $group: {
+          _id: { $dateToString: { format: "%Y-%m-%d", date: "$date" } },
+          data: {
+            $push: {
+              title: "$title",
+              desc: "$desc",
+              status: "$status",
+              date: "$date",
+            },
+          },
+        },
+      },
+    ]);
 
     res.status(200).json({
       data: todos,
