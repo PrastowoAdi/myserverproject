@@ -107,6 +107,11 @@ export const getTodosCompleted = async (req, res, next) => {
   try {
     const todos = await Todos.aggregate([
       {
+        $match: {
+          status: true,
+        },
+      },
+      {
         $group: {
           _id: { $dateToString: { format: "%Y-%m-%d", date: "$date" } },
           data: {
