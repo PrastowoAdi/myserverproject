@@ -1,4 +1,5 @@
 import User from "../models/user.model.js";
+import Wedding from "../models/weddingform/weeding.model.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import createError from "../utils/createError.js";
@@ -21,7 +22,7 @@ export const register = async (req, res, next) => {
 
 export const login = async (req, res, next) => {
   try {
-    const user = await User.findOne({
+    const user = await Wedding.findOne({
       username: req.body.username,
     });
 
@@ -34,18 +35,15 @@ export const login = async (req, res, next) => {
     const token = jwt.sign(
       {
         id: user._id,
-        isSeller: user.isSeller,
+        username: user.username,
       },
       process.env.JWT_KEY
     );
 
     const { password, ...info } = user._doc;
-    res
-      .cookie("accessToken", token, {
-        httpOnly: true,
-      })
-      .status(200)
-      .send(info);
+    res.status(200).json({
+      token,
+    });
   } catch (err) {
     next(err);
   }
