@@ -37,7 +37,7 @@ export const login = async (req, res, next) => {
     if (!isCorrect) {
       res.status(404).json({
         isSuccess: false,
-        message: "   Wrong password or username!!!",
+        message: "Wrong password or username!!!",
       });
     }
 
