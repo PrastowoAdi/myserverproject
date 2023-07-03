@@ -66,3 +66,30 @@ export const weddingUpdateLoveStory = async (req, res, next) => {
     next(err);
   }
 };
+
+export const weddingUpdateShareLove = async (req, res, next) => {
+  try {
+    const token = req.headers.authorization
+      ? req.headers.authorization.replace("Bearer ", "")
+      : null;
+
+    const tokenDecoded = decoded(token);
+    const { share_love } = req.body;
+
+    await Wedding.findOneAndUpdate(
+      {
+        _id: tokenDecoded.id,
+      },
+      {
+        share_love,
+      }
+    ).then(() => {
+      res.status(200).json({
+        isSuccess: true,
+        message: "Success Update Share Love Form",
+      });
+    });
+  } catch (err) {
+    next(err);
+  }
+};

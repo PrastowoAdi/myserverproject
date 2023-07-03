@@ -16,6 +16,16 @@ const WeddingSchema = new Schema(
       type: Array,
       default: [],
     },
+    share_love: {
+      list_bank: {
+        type: Array,
+        default: [],
+      },
+      send_gift_location: {
+        type: String,
+        default: "",
+      },
+    },
   },
   {
     timestamps: true,
