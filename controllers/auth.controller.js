@@ -26,7 +26,7 @@ export const login = async (req, res, next) => {
     });
 
     if (!user) {
-      res.status(404).json({
+      res.status(400).json({
         isSuccess: false,
         message: "User tidak ditemukan!!!",
       });
@@ -35,7 +35,7 @@ export const login = async (req, res, next) => {
     const isCorrect = bcrypt.compareSync(req.body.password, user.password);
 
     if (!isCorrect) {
-      res.status(404).json({
+      res.status(400).json({
         isSuccess: false,
         message: "Wrong password or username!!!",
       });
