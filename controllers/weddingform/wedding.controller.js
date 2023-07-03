@@ -59,7 +59,7 @@ export const weddingUpdateLoveStory = async (req, res, next) => {
     ).then(() => {
       res.status(200).json({
         isSuccess: true,
-        message: "Success Update User",
+        message: "Success Update Love Story Form",
       });
     });
   } catch (err) {
