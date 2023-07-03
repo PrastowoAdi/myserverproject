@@ -40,7 +40,7 @@ export const getUserByUsername = async (req, res, next) => {
   }
 };
 
-export const weddingUpdateUser = async (req, res, next) => {
+export const weddingUpdateLoveStory = async (req, res, next) => {
   try {
     const token = req.headers.authorization
       ? req.headers.authorization.replace("Bearer ", "")
