@@ -32,17 +32,14 @@ app.set("view engine", "ejs");
 //     credentials: true,
 //   })
 // );
-app.use(
-  cors({
-    origin: [
-      "http://localhost:3000",
-      "https://mytimesheet-sigma.vercel.app",
-      "https://myportfolio-liard-eight.vercel.app",
-      "https://mytodoapps.vercel.app",
-    ],
-    credentials: true,
-  })
-);
+app.use(cors({}));
+// origin: [
+//   "http://localhost:3000",
+//   "https://mytimesheet-sigma.vercel.app",
+//   "https://myportfolio-liard-eight.vercel.app",
+//   "https://mytodoapps.vercel.app",
+// ],
+// credentials: true,
 app.use(express.json({ extended: false }));
 app.use(cookieParser());
 
