@@ -26,6 +26,60 @@ const WeddingSchema = new Schema(
         default: "",
       },
     },
+    countdown: {
+      desc: {
+        type: String,
+        default: "",
+      },
+      date: {
+        type: String,
+        default: "",
+      },
+      akad: {
+        location_name: {
+          type: String,
+          default: "",
+        },
+        location: {
+          type: String,
+          default: "",
+        },
+        location_link: {
+          type: String,
+          default: "",
+        },
+        date: {
+          type: String,
+          default: "",
+        },
+      },
+      resepsi: {
+        location_name: {
+          type: String,
+          default: "",
+        },
+        location: {
+          type: String,
+          default: "",
+        },
+        location_link: {
+          type: String,
+          default: "",
+        },
+        date: {
+          type: String,
+          default: "",
+        },
+      },
+      link_live_streaming: {
+        type: String,
+        default: "",
+      },
+      live_streaming_status: {
+        type: Boolean,
+        default: false,
+      },
+    },
   },
   {
     timestamps: true,
