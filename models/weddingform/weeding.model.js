@@ -26,6 +26,14 @@ const WeddingSchema = new Schema(
           type: String,
           default: "",
         },
+        father_name: {
+          type: String,
+          default: "",
+        },
+        mother_name: {
+          type: String,
+          default: "",
+        },
         desc: {
           type: String,
           default: "",
@@ -45,6 +53,14 @@ const WeddingSchema = new Schema(
           default: "",
         },
         fullname: {
+          type: String,
+          default: "",
+        },
+        father_name: {
+          type: String,
+          default: "",
+        },
+        mother_name: {
           type: String,
           default: "",
         },
