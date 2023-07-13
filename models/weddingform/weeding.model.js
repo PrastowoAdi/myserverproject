@@ -12,6 +12,56 @@ const WeddingSchema = new Schema(
       required: true,
       default: "WFH",
     },
+    bride_and_groom: {
+      desc: {
+        type: String,
+        default: "",
+      },
+      groom: {
+        name: {
+          type: String,
+          default: "",
+        },
+        fullname: {
+          type: String,
+          default: "",
+        },
+        desc: {
+          type: String,
+          default: "",
+        },
+        location: {
+          type: String,
+          default: "",
+        },
+        image: {
+          type: String,
+          default: "",
+        },
+      },
+      bride: {
+        name: {
+          type: String,
+          default: "",
+        },
+        fullname: {
+          type: String,
+          default: "",
+        },
+        desc: {
+          type: String,
+          default: "",
+        },
+        location: {
+          type: String,
+          default: "",
+        },
+        image: {
+          type: String,
+          default: "",
+        },
+      },
+    },
     our_love_story: {
       type: Array,
       default: [],
