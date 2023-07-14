@@ -12,6 +12,10 @@ const WeddingSchema = new Schema(
       required: true,
       default: "WFH",
     },
+    theme: {
+      type: String,
+      default: "",
+    },
     bride_and_groom: {
       desc: {
         type: String,
@@ -145,6 +149,31 @@ const WeddingSchema = new Schema(
         type: Boolean,
         default: false,
       },
+    },
+    user_menu: {
+      type: Array,
+      default: [
+        {
+          title: "Dashboard",
+          url: "/",
+        },
+        {
+          title: "Form Pengantin",
+          url: "/form-pengantin",
+        },
+        {
+          title: "Form Acara",
+          url: "/form-acara",
+        },
+        {
+          title: "Form Share Love",
+          url: "/form-share-love",
+        },
+        {
+          title: "Form Love Story",
+          url: " /form-love-story",
+        },
+      ],
     },
   },
   {
