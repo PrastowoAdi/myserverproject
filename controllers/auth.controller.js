@@ -45,6 +45,7 @@ export const login = async (req, res, next) => {
       {
         id: user._id,
         username: user.username,
+        user_menu: user.user_menu,
       },
       process.env.JWT_KEY
     );

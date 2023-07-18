@@ -10,6 +10,7 @@ import dailyRoute from "./routes/daily.route.js";
 import landingRoute from "./routes/myportfolio/landing.route.js";
 import todosRoute from "./routes/todos/todos.route.js";
 import weddingRoute from "./routes/weddingform/wedding.route.js";
+import costTrackRoute from "./routes/costTrack/costTrack.route.js";
 
 const app = express();
 dotenv.config();
@@ -47,6 +48,7 @@ app.use("/api/daily", dailyRoute);
 app.use("/api/myportfolio/landing", landingRoute);
 app.use("/api/todos", todosRoute);
 app.use("/api/wedding", weddingRoute);
+app.use("/api/cost-track", costTrackRoute);
 app.use("/api", authRoute);
 
 app.use((err, req, res, next) => {
