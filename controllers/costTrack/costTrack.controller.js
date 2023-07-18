@@ -38,6 +38,29 @@ export const costTrackUpdate = async (req, res, next) => {
   }
 };
 
+export const costTrackUpdateDana = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { dana } = req.body;
+
+    await CostTrack.findOneAndUpdate(
+      {
+        _id: id,
+      },
+      {
+        dana,
+      }
+    ).then(() => {
+      res.status(200).json({
+        isSuccess: true,
+        message: "Berhasil Update Dana",
+      });
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
 export const getCostTrack = async (req, res, next) => {
   try {
     const costTrack = await CostTrack.find().sort({ createdAt: "descending" });
