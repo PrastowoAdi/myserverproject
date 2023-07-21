@@ -20,6 +20,39 @@ export const costTrackAdd = async (req, res, next) => {
   }
 };
 
+export const costTrackDelete = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const token = req.headers.authorization
+      ? req.headers.authorization.replace("Bearer ", "")
+      : null;
+
+    const tokenDecoded = decoded(token);
+
+    const costTrack = await CostTrack.findOne({
+      username: tokenDecoded.username,
+    }).select("-password");
+
+    const costTrackDelete = costTrack.pengeluaran.filter((e) => e.id !== id);
+
+    await CostTrack.findOneAndUpdate(
+      {
+        _id: tokenDecoded.id,
+      },
+      {
+        pengeluaran: costTrackDelete,
+      }
+    ).then(() => {
+      res.status(200).json({
+        isSuccess: true,
+        message: "Berhasil Hapus pengeluaran",
+      });
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
 export const costTrackUpdate = async (req, res, next) => {
   try {
     const { pengeluaran } = req.body;
@@ -88,7 +121,12 @@ export const getCostTrack = async (req, res, next) => {
     }).select("-password");
 
     res.status(200).json({
-      data: costTrack,
+      data: {
+        _id: costTrack._id,
+        username: costTrack.username,
+        dana: costTrack.dana,
+        pengeluaran: costTrack.pengeluaran.sort((a, b) => b.id - a.id),
+      },
     });
   } catch (err) {
     next(err);
