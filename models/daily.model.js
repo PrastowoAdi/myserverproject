@@ -3,6 +3,10 @@ const { Schema } = mongoose;
 
 const DailySchema = new Schema(
   {
+    username: {
+      type: String,
+      required: true,
+    },
     activity: {
       type: String,
       required: true,

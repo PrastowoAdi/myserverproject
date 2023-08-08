@@ -11,7 +11,7 @@ import {
 const router = express.Router();
 
 router.post("/", dailyAdd);
-router.get("/", getDaily);
+router.get("/:username", getDaily);
 router.get("/export", exportPdf);
 router.put("/:id", dailyUpdate);
 
